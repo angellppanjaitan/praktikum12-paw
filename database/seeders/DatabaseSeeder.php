@@ -15,11 +15,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Create Admin User
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin User',
+            'email' => 'admin@gmail.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'role' => 'admin',
+        ]);
+
+        // Create Regular User
+        User::factory()->create([
+            'name' => 'Regular User',
+            'email' => 'user@gmail.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'role' => 'user',
+        ]);
+
+        // Create Sample Products
+        \App\Models\Product::create([
+            'name' => 'Laptop ASUS ROG',
+            'price' => 15000000,
+            'stock' => 10,
+            'sku' => 'LAP-ROG-001',
+        ]);
+
+        \App\Models\Product::create([
+            'name' => 'Mouse Logitech G502',
+            'price' => 800000,
+            'stock' => 50,
+            'sku' => 'MOU-LOG-002',
         ]);
     }
 }
